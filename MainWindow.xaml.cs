@@ -86,6 +86,7 @@
 
         #endregion
 
+        #region support functions
         private List<Type> MergeByNameAndMembers(List<Type> input)
         {
             List<Type> retValue = new List<Type>();
@@ -112,5 +113,6 @@
 
             return retValue;
         }
+        #endregion
     }
 }
