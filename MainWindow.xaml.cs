@@ -98,7 +98,8 @@
                 if (t.Name == previousName)
                 {
                     retValue[index-1].Members.AddRange(t.Members);
-                    retValue[index-1].Members = retValue[index-1].Members.Distinct().ToList();
+                    retValue[index-1].Members = retValue[index-1].Members.Distinct().OrderBy(x => x).ToList();
+                    index--;
                 }
                 else
                     retValue.Add(new Type
