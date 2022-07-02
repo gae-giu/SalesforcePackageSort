@@ -46,7 +46,7 @@
 
                 using (StringWriter sw = new())
                 {
-                    using (XmlTextWriter xw = new(sw) { Formatting = Formatting.Indented })
+                    using (XmlTextWriter xw = new(sw) { Formatting = Formatting.Indented, Indentation = 4 })
                     {
                         xw.WriteProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
                         XmlSerializerNamespaces xmlns = new();
@@ -89,7 +89,7 @@
         #region support functions
         private List<Type> MergeByNameAndMembers(List<Type> input)
         {
-            List<Type> retValue = new List<Type>();
+            List<Type> retValue = new();
             string previousName = string.Empty;
             int index = 0;
 

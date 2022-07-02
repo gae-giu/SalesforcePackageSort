@@ -24,5 +24,5 @@ saleforcepackagesort.metadata.v2
 *.pdb
 *_wpftmp.csproj
 
-# Visual Studio 2015/2017 cache/options directory
+# Visual Studio cache/options directory
 .vs/
