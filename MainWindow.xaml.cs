@@ -36,8 +36,7 @@
 
                 List<Type> newTypes = new();
                 foreach (Type t in pack.Types.OrderBy(n => n.Name))
-                    newTypes.Add(new Type
-                    {
+                    newTypes.Add(new Type {
                         Members = t.Members.Distinct().OrderBy(x => x).ToList(),
                         Name = t.Name,
                     });
@@ -102,8 +101,7 @@
                     index--;
                 }
                 else
-                    retValue.Add(new Type
-                    {
+                    retValue.Add(new Type {
                         Members = t.Members.Distinct().OrderBy(x => x).ToList(),
                         Name = t.Name,
                     });
