@@ -16,12 +16,14 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Name="btOpenFile" Click="btOpenFile_Click" Content="Open file" Grid.Row="0" Grid.Column="0" Width="75" Margin="4"/>
-            <Label Name="lbFilename" Grid.Row="0" Grid.Column="1" Width="256" Margin="4" HorizontalContentAlignment="Center"/>
+            <Label Name="lbFilename" Grid.Row="0" Grid.Column="1" Width="200" Margin="4" Grid.RowSpan="2" HorizontalContentAlignment="Center"/>
             <Button Name="btOrderFile" Click="btOrderFile_Click" Content="Order file" Grid.Row="1" Grid.Column="0" Width="75" Margin="4" IsEnabled="False"/>
             <Button Name="btClear" Click="btClear_Click" Content="Clear text" Grid.Row="1" Grid.Column="1" Width="75" Margin="4" IsEnabled="False"/>
-            <Button Name="btClipboard" Click="btClipboard_Click" Content="Copy to clipboard" Grid.Row="1" Grid.Column="2" Width="125" Margin="4" IsEnabled="False"/>            
+            <Button Name="btClipboard" Click="btClipboard_Click" Content="Copy to clipboard" Grid.Row="1" Grid.Column="2" Width="125" Margin="4" IsEnabled="False"/>
+            <Button Name="btTestSuite" Click="btTestSuite_Click" Content="Test suite" Grid.Row="2" Grid.Column="0" Width="75" Margin="4" IsEnabled="False"/>
         </Grid>
         <TextBox Name="txtEditor" IsReadOnly="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontFamily="Lucida Console" DockPanel.Dock="Bottom"/>
     </DockPanel>
