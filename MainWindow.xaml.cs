@@ -78,7 +78,7 @@
                 {
                     if (t.Name == "ApexClass")
                         foreach (string @class in t.Members)
-                            if (@class.EndsWith("_Test"))
+                            if (@class.EndsWith("Test"))
                                 tests.Add(@class);
 
                     break;
