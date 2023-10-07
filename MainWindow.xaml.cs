@@ -21,6 +21,7 @@
                 txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
                 lbFilename.Content = openFileDialog.FileName;
                 btOrderFile.IsEnabled = true;
+                btTestSuite.IsEnabled = true;
                 btClear.IsEnabled = true;
             }
         }
@@ -36,8 +37,7 @@
 
                 List<Type> newTypes = new();
                 foreach (Type t in pack.Types.OrderBy(n => n.Name))
-                    newTypes.Add(new Type
-                    {
+                    newTypes.Add(new Type {
                         Members = t.Members.Distinct().OrderBy(x => x).ToList(),
                         Name = t.Name,
                     });
@@ -64,11 +64,55 @@
             }
         }
 
+        private void btTestSuite_Click(object sender, RoutedEventArgs e)
+        {
+            FileStream fs = new(lbFilename.Content.ToString(), FileMode.Open);
+
+            try
+            {
+                XmlSerializer xSerializer = new(typeof(Package));
+                Package pack = (Package)xSerializer.Deserialize(fs);
+
+                List<string> tests = new();
+                foreach (Type t in pack.Types)
+                {
+                    if (t.Name == "ApexClass")
+                        foreach (string @class in t.Members)
+                            if (@class.EndsWith("Test"))
+                                tests.Add(@class);
+
+                    break;
+                }
+
+                using (StringWriter sw = new())
+                {
+                    using (XmlTextWriter xw = new(sw) { Formatting = Formatting.Indented, Indentation = 4 })
+                    {
+                        XmlSerializer xSerializerTest = new(typeof(ApexTestSuite));
+
+                        xw.WriteProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\"");
+                        XmlSerializerNamespaces xmlns = new();
+                        xmlns.Add(string.Empty, string.Empty);
+                        xSerializerTest.Serialize(xw, new ApexTestSuite { TestClassName = tests }, xmlns);
+                        txtEditor.Text = sw.ToString();
+                        MessageBox.Show("Test suite XML generated");
+                        btClipboard.IsEnabled = true;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void btClear_Click(object sender, RoutedEventArgs e)
         {
             txtEditor.Clear();
             lbFilename.Content = string.Empty;
             btOrderFile.IsEnabled = false;
+            btTestSuite.IsEnabled = false;
             btClear.IsEnabled = false;
             btClipboard.IsEnabled = false;
         }
@@ -102,8 +146,7 @@
                     index--;
                 }
                 else
-                    retValue.Add(new Type
-                    {
+                    retValue.Add(new Type {
                         Members = t.Members.Distinct().OrderBy(x => x).ToList(),
                         Name = t.Name,
                     });
