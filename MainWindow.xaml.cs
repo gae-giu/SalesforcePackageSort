@@ -10,7 +10,7 @@
             InitializeComponent();
         }
 
-        #region event fucntions
+        #region event functions
 
         private void btOpenFile_Click(object sender, RoutedEventArgs e)
         {
@@ -77,11 +77,13 @@
                 foreach (Type t in pack.Types)
                 {
                     if (t.Name == "ApexClass")
+                    {
                         foreach (string @class in t.Members)
                             if (@class.EndsWith("Test"))
                                 tests.Add(@class);
 
-                    break;
+                        break;
+                    }
                 }
 
                 using (StringWriter sw = new())
