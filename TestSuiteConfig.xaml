@@ -12,6 +12,7 @@
         <Label Content="Include mode" HorizontalAlignment="Left" Margin="22,69,0,0" VerticalAlignment="Top"/>
         <RadioButton Name="rbContais" Content="contains" HorizontalAlignment="Left" Margin="110,75,0,0" VerticalAlignment="Top"/>
         <RadioButton Name="rbEnds" Content="ends" HorizontalAlignment="Left" Margin="110,95,0,0" VerticalAlignment="Top"/>
-        <Button Name="btDone" Content="Done" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,125,0,0" Click="btDone_Click" />
+        <Button Name="btDone" Content="Done" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,125,0,0" Click="btDone_Click" >
+        </Button>
     </Grid>
 </Window>

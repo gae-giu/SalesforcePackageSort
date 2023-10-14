@@ -24,7 +24,9 @@
             <Button Name="btClear" Click="btClear_Click" Content="Clear text" Grid.Row="1" Grid.Column="1" Width="75" Margin="4" IsEnabled="False"/>
             <Button Name="btClipboard" Click="btClipboard_Click" Content="Copy to clipboard" Grid.Row="1" Grid.Column="2" Width="125" Margin="4" IsEnabled="False"/>
             <Button Name="btTestSuite" Click="btTestSuite_Click" Content="Test suite" Grid.Row="2" Grid.Column="0" Width="75" Margin="4" IsEnabled="False"/>
-            <Button x:Name="btTestSuite_Config" Content="Conf." Grid.Row="2" Grid.Column="0" Width="45" Margin="1,4,136,4" IsEnabled="False" Click="btTestSuite_Config_Click"/>
+            <Button x:Name="btTestSuite_Config" Grid.Row="2" Grid.Column="0" Width="20" Margin="12,4,136,4" IsEnabled="False" Click="btTestSuite_Config_Click">
+                <Image Source="/icon/setting_32.png" Width="12" Height="12"/>
+            </Button>
         </Grid>
         <TextBox Name="txtEditor" IsReadOnly="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontFamily="Lucida Console" DockPanel.Dock="Bottom"/>
     </DockPanel>
