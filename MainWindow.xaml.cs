@@ -5,9 +5,13 @@
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string testKeyword;
+        private bool endsWithIncludeMode;
+
         public MainWindow()
         {
             InitializeComponent();
+            endsWithIncludeMode = true;
         }
 
         #region event functions
@@ -22,6 +26,7 @@
                 lbFilename.Content = openFileDialog.FileName;
                 btOrderFile.IsEnabled = true;
                 btTestSuite.IsEnabled = true;
+                btTestSuite_Config.IsEnabled = true;
                 btClear.IsEnabled = true;
             }
         }
@@ -67,6 +72,8 @@
         private void btTestSuite_Click(object sender, RoutedEventArgs e)
         {
             FileStream fs = new(lbFilename.Content.ToString(), FileMode.Open);
+            if (string.IsNullOrWhiteSpace(testKeyword))
+                testKeyword = "Test";
 
             try
             {
@@ -79,9 +86,18 @@
                     if (t.Name == "ApexClass")
                     {
                         foreach (string @class in t.Members)
-                            if (@class.EndsWith("Test"))
-                                tests.Add(@class);
-
+                        {
+                            if (endsWithIncludeMode)
+                            {
+                                if (@class.EndsWith(testKeyword))
+                                    tests.Add(@class);
+                            }
+                            else
+                            {
+                                if (@class.Contains(testKeyword))
+                                    tests.Add(@class);
+                            }
+                        }
                         break;
                     }
                 }
@@ -109,12 +125,20 @@
             }
         }
 
+        private void btTestSuite_Config_Click(object sender, RoutedEventArgs e)
+        {
+            TestSuiteConfig testSuite = new();
+            testSuite.dialogClosed += new EventHandler<EventClass>(TestSuite_DialogClosed);
+            testSuite.ShowDialog(); // modal opening            
+        }
+
         private void btClear_Click(object sender, RoutedEventArgs e)
         {
             txtEditor.Clear();
             lbFilename.Content = string.Empty;
             btOrderFile.IsEnabled = false;
             btTestSuite.IsEnabled = false;
+            btTestSuite_Config.IsEnabled = false;
             btClear.IsEnabled = false;
             btClipboard.IsEnabled = false;
         }
@@ -133,6 +157,7 @@
         #endregion
 
         #region support functions
+
         private List<Type> MergeByNameAndMembers(List<Type> input)
         {
             List<Type> retValue = new();
@@ -159,6 +184,15 @@
 
             return retValue;
         }
+
+        private void TestSuite_DialogClosed(object sender, EventClass e)
+        {
+            testKeyword = e.testKeyword;
+            endsWithIncludeMode = e.endsWithIncludeMode;
+        }
+
         #endregion
+
+
     }
 }

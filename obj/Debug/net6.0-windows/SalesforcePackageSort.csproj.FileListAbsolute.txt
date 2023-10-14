@@ -61,3 +61,5 @@ C:\Users\Gaetano G\OneDrive\Documenti\Visual Studio 2022\SalesforcePackageSort\o
 C:\Users\Gaetano G\OneDrive\Documenti\Visual Studio 2022\SalesforcePackageSort\obj\Debug\net6.0-windows\SalesforcePackageSort.pdb
 C:\Users\Gaetano G\OneDrive\Documenti\Visual Studio 2022\SalesforcePackageSort\obj\Debug\net6.0-windows\SalesforcePackageSort.genruntimeconfig.cache
 C:\Users\Gaetano G\OneDrive\Documenti\Visual Studio 2022\SalesforcePackageSort\obj\Debug\net6.0-windows\ref\SalesforcePackageSort.dll
+C:\Users\gae_g\OneDrive\Documenti\Visual Studio 2022\SalesforcePackageSort\obj\Debug\net6.0-windows\TestSuiteConfig.g.cs
+C:\Users\gae_g\OneDrive\Documenti\Visual Studio 2022\SalesforcePackageSort\obj\Debug\net6.0-windows\TestSuiteConfig.baml
