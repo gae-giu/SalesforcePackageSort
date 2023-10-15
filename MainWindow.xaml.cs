@@ -67,6 +67,10 @@
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                fs.Dispose();
+            }
         }
 
         private void btTestSuite_Click(object sender, RoutedEventArgs e)
@@ -122,6 +126,10 @@
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Dispose();
             }
         }
 
