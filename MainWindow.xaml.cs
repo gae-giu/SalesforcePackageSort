@@ -27,6 +27,7 @@
                 btOrderFile.IsEnabled = true;
                 btTestSuite.IsEnabled = true;
                 btTestSuite_Config.IsEnabled = true;
+                btTestSet.IsEnabled = true;
                 btClear.IsEnabled = true;
             }
         }
@@ -140,6 +141,57 @@
             testSuite.ShowDialog(); // modal opening            
         }
 
+        private void btTestSet_Click(object sender, RoutedEventArgs e)
+        {
+            FileStream fs = new(lbFilename.Content.ToString(), FileMode.Open);
+            List<string> output = new();
+
+            if (string.IsNullOrWhiteSpace(testKeyword))
+                testKeyword = "Test";
+
+            try
+            {
+                XmlSerializer xSerializer = new(typeof(Package));
+                Package pack = (Package)xSerializer.Deserialize(fs);
+
+                List<string> tests = new();
+                foreach (Type t in pack.Types)
+                {
+                    if (t.Name == "ApexClass")
+                    {
+                        foreach (string @class in t.Members)
+                        {
+                            if (@class.EndsWith(testKeyword))
+                                output.Add(@class + ", ");
+                            else
+                                output.Add(@class + "_Test, ");
+                        }
+                        break;
+                    }
+                }
+
+                output = output.Distinct().ToList();
+                string tmp = string.Empty;
+                
+                foreach(string s in output)
+                    tmp += s;
+
+                tmp = tmp.TrimEnd().TrimEnd(',');
+                txtEditor.Text = tmp;
+                txtEditor.TextWrapping = TextWrapping.Wrap;
+                MessageBox.Show("Minimum set of test classes generated");
+                btClipboard.IsEnabled= true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Dispose();
+            }
+        }
+
         private void btClear_Click(object sender, RoutedEventArgs e)
         {
             txtEditor.Clear();
@@ -147,6 +199,7 @@
             btOrderFile.IsEnabled = false;
             btTestSuite.IsEnabled = false;
             btTestSuite_Config.IsEnabled = false;
+            btTestSet.IsEnabled = false;
             btClear.IsEnabled = false;
             btClipboard.IsEnabled = false;
         }
@@ -200,6 +253,6 @@
         }
 
         #endregion
-
+        
     }
 }

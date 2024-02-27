@@ -17,9 +17,10 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Name="btOpenFile" Click="btOpenFile_Click" Content="Open file" Grid.Row="0" Grid.Column="0" Width="75" Margin="4"/>
-            <Label Name="lbFilename" Grid.Row="0" Grid.Column="1" Width="200" Margin="4" Grid.RowSpan="2" HorizontalContentAlignment="Center"/>
+            <Label Name="lbFilename" Content="filename" Grid.Row="0" Grid.Column="1" Width="200" Margin="4" Grid.RowSpan="2" HorizontalContentAlignment="Center"/>
             <Button Name="btOrderFile" Click="btOrderFile_Click" Content="Order file" Grid.Row="1" Grid.Column="0" Width="75" Margin="4" IsEnabled="False"/>
             <Button Name="btClear" Click="btClear_Click" Content="Clear text" Grid.Row="1" Grid.Column="1" Width="75" Margin="4" IsEnabled="False"/>
             <Button Name="btClipboard" Click="btClipboard_Click" Content="Copy to clipboard" Grid.Row="1" Grid.Column="2" Width="125" Margin="4" IsEnabled="False"/>
@@ -27,6 +28,7 @@
             <Button x:Name="btTestSuite_Config" Grid.Row="2" Grid.Column="0" Width="20" Margin="12,4,136,4" IsEnabled="False" Click="btTestSuite_Config_Click">
                 <Image Source="/icon/setting_32.png" Width="12" Height="12"/>
             </Button>
+            <Button Name="btTestSet" Content="Min. Test classes set" Grid.Row="3" Grid.Column="0" Width="115" Margin="4" IsEnabled="False" Click="btTestSet_Click"/>
         </Grid>
         <TextBox Name="txtEditor" IsReadOnly="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontFamily="Lucida Console" DockPanel.Dock="Bottom"/>
     </DockPanel>
