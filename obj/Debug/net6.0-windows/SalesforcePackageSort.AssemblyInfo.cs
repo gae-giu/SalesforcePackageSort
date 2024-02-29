@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SalesforcePackageSort")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d89455599c84822a0ec43ae8bcadf3c4f29ff167")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b68b795e51808d32b6e177f44859a9bc6837f03")]
 [assembly: System.Reflection.AssemblyProductAttribute("SalesforcePackageSort")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SalesforcePackageSort")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
