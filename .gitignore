@@ -26,3 +26,29 @@ saleforcepackagesort.metadata.v2
 
 # Visual Studio cache/options directory
 .vs/
+/obj/Debug/net6.0-windows/SalesforcePackageSort.AssemblyInfoInputs.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.assets.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.csproj.AssemblyReference.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.csproj.CoreCompileInputs.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.csproj.FileListAbsolute.txt
+/obj/Debug/net6.0-windows/SalesforcePackageSort.dll
+/obj/Debug/net6.0-windows/SalesforcePackageSort.g.resources
+/obj/Debug/net6.0-windows/SalesforcePackageSort.GeneratedMSBuildEditorConfig.editorconfig
+/obj/Debug/net6.0-windows/SalesforcePackageSort.genruntimeconfig.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.pdb
+/obj/Debug/net6.0-windows/SalesforcePackageSort_MarkupCompile.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort_MarkupCompile.i.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort_MarkupCompile.lref
+/obj/Debug/net6.0-windows/SalesforcePackageSort.AssemblyInfoInputs.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.assets.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.csproj.AssemblyReference.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.csproj.CoreCompileInputs.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.csproj.FileListAbsolute.txt
+/obj/Debug/net6.0-windows/SalesforcePackageSort.dll
+/obj/Debug/net6.0-windows/SalesforcePackageSort.g.resources
+/obj/Debug/net6.0-windows/SalesforcePackageSort.GeneratedMSBuildEditorConfig.editorconfig
+/obj/Debug/net6.0-windows/SalesforcePackageSort.genruntimeconfig.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort.pdb
+/obj/Debug/net6.0-windows/SalesforcePackageSort_MarkupCompile.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort_MarkupCompile.i.cache
+/obj/Debug/net6.0-windows/SalesforcePackageSort_MarkupCompile.lref

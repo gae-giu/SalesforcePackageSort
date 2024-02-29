@@ -5,9 +5,13 @@
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string testKeyword;
+        private bool endsWithIncludeMode;
+
         public MainWindow()
         {
             InitializeComponent();
+            endsWithIncludeMode = true;
         }
 
         #region event functions
@@ -22,6 +26,8 @@
                 lbFilename.Content = openFileDialog.FileName;
                 btOrderFile.IsEnabled = true;
                 btTestSuite.IsEnabled = true;
+                btTestSuite_Config.IsEnabled = true;
+                btTestSet.IsEnabled = true;
                 btClear.IsEnabled = true;
             }
         }
@@ -62,11 +68,17 @@
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                fs.Dispose();
+            }
         }
 
         private void btTestSuite_Click(object sender, RoutedEventArgs e)
         {
             FileStream fs = new(lbFilename.Content.ToString(), FileMode.Open);
+            if (string.IsNullOrWhiteSpace(testKeyword))
+                testKeyword = "Test";
 
             try
             {
@@ -79,9 +91,18 @@
                     if (t.Name == "ApexClass")
                     {
                         foreach (string @class in t.Members)
-                            if (@class.EndsWith("Test"))
-                                tests.Add(@class);
-
+                        {
+                            if (endsWithIncludeMode)
+                            {
+                                if (@class.EndsWith(testKeyword))
+                                    tests.Add(@class);
+                            }
+                            else
+                            {
+                                if (@class.Contains(testKeyword))
+                                    tests.Add(@class);
+                            }
+                        }
                         break;
                     }
                 }
@@ -107,6 +128,68 @@
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                fs.Dispose();
+            }
+        }
+
+        private void btTestSuite_Config_Click(object sender, RoutedEventArgs e)
+        {
+            TestSuiteConfig testSuite = new();
+            testSuite.dialogClosed += new EventHandler<EventClass>(TestSuite_DialogClosed);
+            testSuite.ShowDialog(); // modal opening            
+        }
+
+        private void btTestSet_Click(object sender, RoutedEventArgs e)
+        {
+            FileStream fs = new(lbFilename.Content.ToString(), FileMode.Open);
+            List<string> output = new();
+
+            if (string.IsNullOrWhiteSpace(testKeyword))
+                testKeyword = "Test";
+
+            try
+            {
+                XmlSerializer xSerializer = new(typeof(Package));
+                Package pack = (Package)xSerializer.Deserialize(fs);
+
+                List<string> tests = new();
+                foreach (Type t in pack.Types)
+                {
+                    if (t.Name == "ApexClass")
+                    {
+                        foreach (string @class in t.Members)
+                        {
+                            if (@class.EndsWith(testKeyword))
+                                output.Add(@class + ", ");
+                            else
+                                output.Add(@class + "_Test, ");
+                        }
+                        break;
+                    }
+                }
+
+                output = output.Distinct().ToList();
+                string tmp = string.Empty;
+                
+                foreach(string s in output)
+                    tmp += s;
+
+                tmp = tmp.TrimEnd().TrimEnd(',');
+                txtEditor.Text = tmp;
+                txtEditor.TextWrapping = TextWrapping.Wrap;
+                MessageBox.Show("Minimum set of test classes generated");
+                btClipboard.IsEnabled= true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Dispose();
+            }
         }
 
         private void btClear_Click(object sender, RoutedEventArgs e)
@@ -115,6 +198,8 @@
             lbFilename.Content = string.Empty;
             btOrderFile.IsEnabled = false;
             btTestSuite.IsEnabled = false;
+            btTestSuite_Config.IsEnabled = false;
+            btTestSet.IsEnabled = false;
             btClear.IsEnabled = false;
             btClipboard.IsEnabled = false;
         }
@@ -133,6 +218,7 @@
         #endregion
 
         #region support functions
+
         private List<Type> MergeByNameAndMembers(List<Type> input)
         {
             List<Type> retValue = new();
@@ -159,6 +245,14 @@
 
             return retValue;
         }
+
+        private void TestSuite_DialogClosed(object sender, EventClass e)
+        {
+            testKeyword = e.testKeyword;
+            endsWithIncludeMode = e.endsWithIncludeMode;
+        }
+
         #endregion
+        
     }
 }

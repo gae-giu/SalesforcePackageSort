@@ -7,4 +7,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="setting_32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icon\setting_32.png" />
+  </ItemGroup>
+
 </Project>
