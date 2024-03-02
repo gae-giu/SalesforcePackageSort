@@ -144,7 +144,7 @@
         private void btTestSet_Click(object sender, RoutedEventArgs e)
         {
             FileStream fs = new(lbFilename.Content.ToString(), FileMode.Open);
-            List<string> output = new();
+            HashSet<string> tests = new();
 
             if (string.IsNullOrWhiteSpace(testKeyword))
                 testKeyword = "Test";
@@ -154,7 +154,6 @@
                 XmlSerializer xSerializer = new(typeof(Package));
                 Package pack = (Package)xSerializer.Deserialize(fs);
 
-                List<string> tests = new();
                 foreach (Type t in pack.Types)
                 {
                     if (t.Name == "ApexClass")
@@ -162,18 +161,17 @@
                         foreach (string @class in t.Members)
                         {
                             if (@class.EndsWith(testKeyword))
-                                output.Add(@class + ", ");
+                                tests.Add(@class + ", ");
                             else
-                                output.Add(@class + "_Test, ");
+                                tests.Add(@class + "_Test, ");
                         }
                         break;
                     }
                 }
 
-                output = output.Distinct().ToList();
                 string tmp = string.Empty;
                 
-                foreach(string s in output)
+                foreach(string s in tests)
                     tmp += s;
 
                 tmp = tmp.TrimEnd().TrimEnd(',');
